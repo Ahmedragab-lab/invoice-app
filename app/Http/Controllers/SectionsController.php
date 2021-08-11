@@ -49,10 +49,34 @@ class SectionsController extends Controller
     }
     public function update(Request $request, Sections $sections)
     {
-        //
+        $id = $request->id;
+
+        $this->validate($request, [
+
+            'section_name' => 'required|max:255|unique:sections,section_name,'.$id,
+            'description' => 'required',
+        ],[
+
+            'section_name.required' =>'يرجي ادخال اسم القسم',
+            'section_name.unique' =>'اسم القسم مسجل مسبقا',
+            'description.required' =>'يرجي ادخال البيان',
+
+        ]);
+
+        $sections = sections::find($id);
+        $sections->update([
+            'section_name' => $request->section_name,
+            'description' => $request->description,
+        ]);
+
+        session()->flash('edit','تم تعديل القسم بنجاج');
+        return redirect('/sections');
     }
-    public function destroy(Sections $sections)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        sections::find($id)->delete();
+        session()->flash('delete','تم حذف القسم بنجاح');
+        return redirect('/sections');
     }
 }
