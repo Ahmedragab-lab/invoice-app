@@ -14,7 +14,8 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        //
+        $invoices=Invoices::all();
+        return view('invoices.invoices',compact('invoices'));
     }
 
     /**
