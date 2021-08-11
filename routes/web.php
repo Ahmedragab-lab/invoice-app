@@ -21,6 +21,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');                      
 
-Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+//route used by form to open main sidebar 1 
 Route::get('/{page}', [AdminController::class,'index']);
