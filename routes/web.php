@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
-use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +23,10 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');                      
 Route::resource('/invoices', Controllers\InvoicesController::class);                      
+Route::resource('/sections', Controllers\SectionsController::class);                      
 
 
 
 
 //route used by form to open main sidebar 1 
-Route::get('/{page}', [AdminController::class,'index']);
+Route::get('/{page}', [Controllers\AdminController::class,'index']);
