@@ -21,12 +21,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');                      
-Route::resource('/invoices', Controllers\InvoicesController::class);                      
-Route::resource('/sections', Controllers\SectionsController::class);                      
+Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/invoices', Controllers\InvoicesController::class);
+Route::resource('/sections', Controllers\SectionsController::class);
+Route::resource('/products', Controllers\ProductsController::class);
 
 
 
 
-//route used by form to open main sidebar 1 
+
+//route used by form to open main sidebar 1
 Route::get('/{page}', [Controllers\AdminController::class,'index']);
