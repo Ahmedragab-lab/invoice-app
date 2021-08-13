@@ -26,7 +26,7 @@ class SectionsController extends Controller
             ],
             [
                 'section_name.required' =>'يرجي ادخال اسم القسم',
-                'section_name.unique' =>'اسم القسم مسجل مسبقا',
+                'section_name.unique'   =>'اسم القسم مسجل مسبقا',
             ]);
 
             sections::create([

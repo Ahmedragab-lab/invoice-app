@@ -75,7 +75,7 @@ class ProductsController extends Controller
 
         $this->validate($request, [
 
-            'Product_name' => 'required|max:255|unique:sections,section_name,'.$id,
+            'Product_name' => 'required|max:255|unique:products,Product_name,'.$id,
             'description'  => 'required',
         ],[
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoices;
+use App\Models\Sections;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -25,7 +26,8 @@ class InvoicesController extends Controller
      */
     public function create()
     {
-        //
+        $sections = Sections::all();
+        return view('invoices.add_invoice', compact('sections'));
     }
 
     /**
