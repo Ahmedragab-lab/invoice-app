@@ -54,12 +54,12 @@ class SectionsController extends Controller
         $this->validate($request, [
 
             'section_name' => 'required|max:255|unique:sections,section_name,'.$id,
-            'description' => 'required',
+            'description'  => 'required',
         ],[
 
             'section_name.required' =>'يرجي ادخال اسم القسم',
-            'section_name.unique' =>'اسم القسم مسجل مسبقا',
-            'description.required' =>'يرجي ادخال البيان',
+            'section_name.unique'   =>'اسم القسم مسجل مسبقا',
+            'description.required'  =>'يرجي ادخال البيان',
 
         ]);
 

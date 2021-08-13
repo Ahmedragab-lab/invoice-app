@@ -72,15 +72,15 @@
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-                    @can('اضافة فاتورة')
+                    {{-- @can('اضافة فاتورة') --}}
                         <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
                                 class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
-                    @endcan
+                    {{-- @endcan --}}
 
-                    @can('تصدير EXCEL')
+                    {{-- @can('تصدير EXCEL') --}}
                         <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
                             style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
-                    @endcan
+                    {{-- @endcan --}}
 
                 </div>
                 <div class="card-body">
@@ -88,7 +88,7 @@
                         <table id="example" class="table key-buttons text-md-nowrap" data-page-length='50'style="text-align: center">
                             <thead>
                                 <tr>
-                                    <th class="border-bottom-0">#</th>
+                                    <th class="border-bottom-0">مسلسل</th>
                                     <th class="border-bottom-0">رقم الفاتورة</th>
                                     <th class="border-bottom-0">تاريخ القاتورة</th>
                                     <th class="border-bottom-0">تاريخ الاستحقاق</th>
