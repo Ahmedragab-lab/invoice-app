@@ -13,4 +13,12 @@ class Sections extends Model
         'description',
         'Created_by',
     ];
+    public function invoice()
+    {
+    return $this->hasMany('App\Models\Invoices');
+    }
+    public function product()
+    {
+    return $this->hasMany('App\Models\Products');
+    }
 }
