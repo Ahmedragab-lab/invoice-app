@@ -17,6 +17,7 @@ class Products extends Model
     protected $guarded = [];
     public function section()
    {
-   return $this->belongsTo('App\Models\sections');
+//    return $this->belongsTo('App\Models\sections');
+      return $this->belongsTo(Sections::class);
    }
 }
