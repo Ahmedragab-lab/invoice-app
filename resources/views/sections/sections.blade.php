@@ -47,7 +47,7 @@
 
 @if (session()->has('delete'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>{{ session()->get('delete') }}</strong>
+        <strong style="padding-right: 35px;">{{ session()->get('delete') }}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -56,7 +56,7 @@
 
 @if (session()->has('edit'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>{{ session()->get('edit') }}</strong>
+        <strong style="padding-right: 35px;">{{ session()->get('edit') }}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -72,20 +72,24 @@
                 <div class="d-flex justify-content-between">
                     {{-- @can('اضافة قسم') --}}
                         <a class="modal-effect btn btn-primary " data-effect="effect-scale"
-                            data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
+                            data-toggle="modal" href="#modaldemo8" title="اضافه" >
+                            اضافة قسم
+                        </a>
                     {{-- @endcan --}}
                 </div>
 
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'
+                    {{-- <table id="example"></table> --}}
+                    <table id="example1"  class="table key-buttons text-md-nowrap" data-page-length='50'
                         style="text-align: center">
                         <thead>
                             <tr>
-                                <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0">مسلسل</th>
                                 <th class="border-bottom-0">اسم القسم</th>
                                 <th class="border-bottom-0">الوصف</th>
+                                <th class="border-bottom-0">سجل بواسطه</th>
                                 <th class="border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
@@ -97,19 +101,29 @@
                                     <td>{{ $i }}</td>
                                     <td>{{ $x->section_name }}</td>
                                     <td>{{ $x->description }}</td>
+                                    <td>{{ auth()->user()->name}}</td>
                                     <td>
                                         {{-- @can('تعديل قسم') --}}
                                             <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
-                                                data-description="{{ $x->description }}" data-toggle="modal"
-                                                href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
+                                                data-id="{{ $x->id }}"
+                                                data-section_name="{{ $x->section_name }}"
+                                                data-description="{{ $x->description }}" 
+                                                data-toggle="modal"
+                                                href="#exampleModal2" title="تعديل">
+                                                تعديل
+                                                <i class="las la-pen"></i>
+                                            </a>
                                         {{-- @endcan --}}
 
                                         {{-- @can('حذف قسم') --}}
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
-                                                data-toggle="modal" href="#modaldemo9" title="حذف"><i
-                                                    class="las la-trash"></i></a>
+                                                data-id="{{ $x->id }}" 
+                                                data-section_name="{{ $x->section_name }}"
+                                                data-toggle="modal" 
+                                                href="#modaldemo9" title="حذف" >  
+                                                حذف
+                                                <i class="las la-trash"></i>
+                                            </a>
                                         {{-- @endcan --}}
                                     </td>
                                 </tr>
@@ -131,7 +145,9 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('sections.store') }}" method="post">
+                    {{-- <form action="sections/store" method="post"> --}}
                         {{ csrf_field() }}
+                        {{-- @csrf --}}
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">اسم القسم</label>
