@@ -167,7 +167,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <form action="sections/update" method="post" autocomplete="off">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
