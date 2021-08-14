@@ -23,9 +23,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/invoices', Controllers\InvoicesController::class);
+Route::get('/section/{id}',[Controllers\InvoicesController::class ,'getproducts']);
 Route::resource('/sections', Controllers\SectionsController::class);
 Route::resource('/products', Controllers\ProductsController::class);
-
 
 
 
