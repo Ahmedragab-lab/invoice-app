@@ -27,7 +27,14 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-
+    @if (session()->has('Add'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong style="padding-right: 35px;">{{ session()->get('Add') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     @if (session()->has('delete_invoice'))
         <script>
             window.onload = function() {
@@ -145,34 +152,30 @@
                                                 <div class="dropdown-menu tx-13">
                                                     {{-- @can('تعديل الفاتورة') --}}
                                                     <a class="dropdown-item"
-                                                        href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل
-                                                        الفاتورة</a>
+                                                        href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل الفاتورة
+                                                    </a>
                                                     {{-- @endcan --}}
 
                                                     {{-- @can('حذف الفاتورة') --}}
                                                     <a class="dropdown-item" href="#"
                                                         data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
-                                                        data-target="#delete_invoice"><i
-                                                            class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                        الفاتورة
+                                                        data-target="#delete_invoice"><i class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة
                                                     </a>
                                                     {{-- @endcan --}}
 
                                                     {{-- @can('تغير حالة الدفع') --}}
                                                     <a class="dropdown-item"
-                                                        href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
-                                                            class=" text-success fas
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        fa-money-bill"></i>&nbsp;&nbsp;تغير
-                                                        حالة
-                                                        الدفع</a>
+                                                        {{-- href="{{ URL::route('Status_show', [$invoice->id]) }}" --}}
+                                                        >
+                                                        <i class="text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير حالة الدفع
+                                                    </a>
                                                     {{-- @endcan --}}
 
                                                     {{-- @can('ارشفة الفاتورة') --}}
                                                     <a class="dropdown-item" href="#"
                                                         data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
-                                                        data-target="#Transfer_invoice"><i
-                                                            class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
-                                                        الارشيف
+                                                        data-target="#Transfer_invoice">
+                                                        <i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف
                                                     </a>
                                                     {{-- @endcan --}}
 
