@@ -17,7 +17,7 @@ use App\Http\Controllers;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome2');
 });
 
 Auth::routes();
@@ -27,6 +27,7 @@ Route::get('/section/{id}',[Controllers\InvoicesController::class ,'getproducts'
 Route::resource('/sections', Controllers\SectionsController::class);
 Route::resource('/products', Controllers\ProductsController::class);
 Route::get('/InvoicesDetails/{id}',[Controllers\InvoicesDetailsController::class ,'edit']);
+Route::post('/InvoiceAttachments',[Controllers\InvoiceAttachmentsController::class ,'store']);
 
 
 

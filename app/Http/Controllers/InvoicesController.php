@@ -56,8 +56,13 @@ class InvoicesController extends Controller
             'user' => (Auth::user()->name),
         ]);
         if ($request->hasFile('pic')) {
-            // $this->validate($request,['pic'=>'requierd|mimes:pdf|max:10000'],
-            //                          ['pic.mimes'=>'خطا لابد ان يكون نوع الملف pdf']);
+            $this->validate($request, [
+
+                'file_name' => 'mimes:pdf,jpeg,png,jpg',
+
+                ], [
+                    'file_name.mimes' => 'صيغة المرفق يجب ان تكون   pdf, jpeg , png , jpg',
+                ]);
             $invoice_id = Invoices::latest()->first()->id;
             $image = $request->file('pic');
             $file_name = $image->getClientOriginalName();  // شايل اسم الصوره او الملف فقط
