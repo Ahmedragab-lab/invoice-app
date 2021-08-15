@@ -60,7 +60,7 @@ class InvoicesController extends Controller
             //                          ['pic.mimes'=>'خطا لابد ان يكون نوع الملف pdf']);
             $invoice_id = Invoices::latest()->first()->id;
             $image = $request->file('pic');
-            $file_name = $image->getClientOriginalName();
+            $file_name = $image->getClientOriginalName();  // شايل اسم الصوره او الملف فقط
             $invoice_number = $request->invoice_number;
 
             $attachments = new invoice_attachments();
@@ -71,7 +71,7 @@ class InvoicesController extends Controller
             $attachments->save();
 
             // move pic
-            $imageName = $request->pic->getClientOriginalName();
+            $imageName = $request->pic->getClientOriginalName();   // شايل الصوره او الملف نفسه
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');

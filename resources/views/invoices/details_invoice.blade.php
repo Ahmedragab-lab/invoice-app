@@ -73,8 +73,7 @@
                                     <div class="tabs-menu1">
                                         <!-- Tabs -->
                                         <ul class="nav panel-tabs main-nav-line">
-                                            <li><a href="#tab4" class="nav-link active" data-toggle="tab">معلومات
-                                                    الفاتورة</a></li>
+                                            <li><a href="#tab4" class="nav-link active" data-toggle="tab">معلومات الفاتورة</a></li>
                                             <li><a href="#tab5" class="nav-link" data-toggle="tab">حالات الدفع</a></li>
                                             <li><a href="#tab6" class="nav-link" data-toggle="tab">المرفقات</a></li>
                                         </ul>
@@ -304,7 +303,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('delete_file') }}" method="post">
+                {{-- <form action="{{ route('delete_file') }}" method="post"> --}}
+                <form action="#" method="post">
 
                     {{ csrf_field() }}
                     <div class="modal-body">

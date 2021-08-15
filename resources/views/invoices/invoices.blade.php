@@ -152,7 +152,7 @@
                                                 <div class="dropdown-menu tx-13">
                                                     {{-- @can('تعديل الفاتورة') --}}
                                                     <a class="dropdown-item"
-                                                        href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل الفاتورة
+                                                        href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"><i class="las la-pen"></i>&nbsp;&nbsp;تعديل الفاتورة
                                                     </a>
                                                     {{-- @endcan --}}
 

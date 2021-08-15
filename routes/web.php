@@ -26,6 +26,7 @@ Route::resource('/invoices', Controllers\InvoicesController::class);
 Route::get('/section/{id}',[Controllers\InvoicesController::class ,'getproducts']);
 Route::resource('/sections', Controllers\SectionsController::class);
 Route::resource('/products', Controllers\ProductsController::class);
+Route::get('/InvoicesDetails/{id}',[Controllers\InvoicesDetailsController::class ,'edit']);
 
 
 
