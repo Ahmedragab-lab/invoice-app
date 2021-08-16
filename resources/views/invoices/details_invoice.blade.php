@@ -39,7 +39,7 @@
 
     @if (session()->has('Add'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('Add') }}</strong>
+            <strong style="padding-right: 35px;">{{ session()->get('Add') }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -50,7 +50,7 @@
 
     @if (session()->has('delete'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('delete') }}</strong>
+            <strong style="padding-right: 35px;">{{ session()->get('delete') }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -305,9 +305,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{-- <form action="{{ route('delete_file') }}" method="post"> --}}
-                <form action="#" method="post">
-
+                <form action="{{ route('delete_file') }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <p class="text-center">
