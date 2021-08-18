@@ -41,7 +41,7 @@ Route::get('Invoice_Partial',[Controllers\InvoicesController::class,'Invoice_Par
 
 Route::resource('Archive', Controllers\InvoiceAchiveController::class);
 Route::get('Print_invoice/{id}',[Controllers\InvoicesController::class,'Print_invoice']);
-
+Route::get('export_invoices',[Controllers\InvoicesController::class,'export']);
 
 
 //route used by form to open main sidebar 1

@@ -82,8 +82,10 @@
                     {{-- @endcan --}}
 
                     {{-- @can('تصدير EXCEL') --}}
-                    <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
-                        style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
+                    <a class="modal-effect btn btn-sm btn-primary"
+                        href="{{ url('export_invoices') }}"
+                        style="color:#fff"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل
+                    </a>
                     {{-- @endcan --}}
 
                 </div>
