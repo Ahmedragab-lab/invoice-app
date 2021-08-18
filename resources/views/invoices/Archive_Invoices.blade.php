@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    قائمة الفواتير
+    ارشيف الفواتير
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -18,7 +18,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
+                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ أرشيف
                     الفواتير</span>
             </div>
         </div>
@@ -27,14 +27,19 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-    @if (session()->has('Add'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong style="padding-right: 35px;">{{ session()->get('Add') }}</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+
+    @if (session()->has('archive_invoice'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "تم أرشفة الفاتورة بنجاح",
+                    type: "success"
+                })
+            }
+
+        </script>
     @endif
+
     @if (session()->has('delete_invoice'))
         <script>
             window.onload = function() {
@@ -43,32 +48,9 @@
                     type: "success"
                 })
             }
+
         </script>
     @endif
-
-
-    @if (session()->has('Status_Update'))
-        <script>
-            window.onload = function() {
-                notif({
-                    msg: "تم تحديث حالة الدفع بنجاح",
-                    type: "success"
-                })
-            }
-        </script>
-    @endif
-
-    @if (session()->has('restore_invoice'))
-        <script>
-            window.onload = function() {
-                notif({
-                    msg: "تم استعادة الفاتورة بنجاح",
-                    type: "success"
-                })
-            }
-        </script>
-    @endif
-
 
     <!-- row -->
     <div class="row">
@@ -76,24 +58,16 @@
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-                    {{-- @can('اضافة فاتورة') --}}
-                    <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
-                            class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
-                    {{-- @endcan --}}
+                    <div class="d-flex justify-content-between">
 
-                    {{-- @can('تصدير EXCEL') --}}
-                    <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
-                        style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
-                    {{-- @endcan --}}
-
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table key-buttons text-md-nowrap" data-page-length='50'
-                            style="text-align: center">
+                        <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
                             <thead>
                                 <tr>
-                                    <th class="border-bottom-0">مسلسل</th>
+                                    <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">رقم الفاتورة</th>
                                     <th class="border-bottom-0">تاريخ القاتورة</th>
                                     <th class="border-bottom-0">تاريخ الاستحقاق</th>
@@ -110,11 +84,11 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 0;
+                                $i = 0;
                                 @endphp
                                 @foreach ($invoices as $invoice)
                                     @php
-                                        $i++;
+                                    $i++
                                     @endphp
                                     <tr>
                                         <td>{{ $i }}</td>
@@ -122,10 +96,8 @@
                                         <td>{{ $invoice->invoice_Date }}</td>
                                         <td>{{ $invoice->Due_date }}</td>
                                         <td>{{ $invoice->product }}</td>
-                                        <td>
-                                            <a href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">
-                                                {{ $invoice->section->section_name }}
-                                            </a>
+                                        <td><a
+                                                href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
                                         </td>
                                         <td>{{ $invoice->Discount }}</td>
                                         <td>{{ $invoice->Rate_VAT }}</td>
@@ -147,43 +119,14 @@
                                             <div class="dropdown">
                                                 <button aria-expanded="false" aria-haspopup="true"
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
-                                                    type="button">العمليات<i class="fas fa-caret-down ml-1"></i>
-                                                </button>
+                                                    type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                                 <div class="dropdown-menu tx-13">
-                                                    {{-- @can('تعديل الفاتورة') --}}
-                                                    <a class="dropdown-item"
-                                                        {{-- href="edit_invoice/{{ $invoice->id }}"><i class="las la-pen"></i>&nbsp;&nbsp;تعديل الفاتورة --}}
-                                                        href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"><i class="las la-pen"></i>&nbsp;&nbsp;تعديل الفاتورة
-                                                    </a>
-                                                    {{-- @endcan --}}
-
-                                                    {{-- @can('حذف الفاتورة') --}}
-                                                    <a class="dropdown-item" href="#"
-                                                        data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
-                                                        data-target="#delete_invoice"><i class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة
-                                                    </a>
-                                                    {{-- @endcan --}}
-
-                                                    {{-- @can('تغير حالة الدفع') --}}
-                                                    <a class="dropdown-item"
-                                                        href="{{ URL::route('Status_show', [$invoice->id]) }}" >
-                                                        <i class="text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير حالة الدفع
-                                                    </a>
-                                                    {{-- @endcan --}}
-
-                                                    {{-- @can('ارشفة الفاتورة') --}}
-                                                    <a class="dropdown-item" href="#"
-                                                        data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
-                                                        data-target="#Transfer_invoice">
-                                                        <i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف
-                                                    </a>
-                                                    {{-- @endcan --}}
-
-                                                    {{-- @can('طباعةالفاتورة') --}}
-                                                    <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}">
-                                                        <i class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة الفاتورة
-                                                    </a>
-                                                    {{-- @endcan --}}
+                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                        data-toggle="modal" data-target="#Transfer_invoice"><i
+                                                            class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الفواتير</a>
+                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                        data-toggle="modal" data-target="#delete_invoice"><i
+                                                            class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة</a>
                                                 </div>
                                             </div>
 
@@ -210,13 +153,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('invoices.destroy', 'test') }}" method="post">
+                    <form action="{{ route('Archive.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
                     هل انت متاكد من عملية الحذف ؟
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
@@ -227,25 +171,23 @@
         </div>
     </div>
 
-
-    <!-- ارشيف الفاتورة -->
+    <!--الغاء الارشفة-->
     <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ارشفة الفاتورة</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">الغاء ارشفة الفاتورة</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('invoices.destroy', 'test') }}" method="post">
-                        {{ method_field('delete') }}
+                    <form action="{{ route('Archive.update', 'test') }}" method="post">
+                        {{ method_field('patch') }}
                         {{ csrf_field() }}
                 </div>
                 <div class="modal-body">
-                    هل انت متاكد من عملية الارشفة ؟
+                    هل انت متاكد من عملية الغاء الارشفة ؟
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
-                    <input type="hidden" name="id_page" id="id_page" value="2">
 
                 </div>
                 <div class="modal-footer">
@@ -295,6 +237,7 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
+
     </script>
 
     <script>
@@ -304,12 +247,7 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
+
     </script>
-
-
-
-
-
-
 
 @endsection
