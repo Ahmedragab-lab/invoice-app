@@ -127,7 +127,8 @@ class InvoicesController extends Controller
         ]);
 
         session()->flash('edit', 'تم تعديل الفاتورة بنجاح');
-        return back();
+        return redirect('/invoices');
+        // return back();
     }
 
     public function destroy(Request $request)
