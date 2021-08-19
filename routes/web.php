@@ -43,6 +43,10 @@ Route::resource('Archive', Controllers\InvoiceAchiveController::class);
 Route::get('Print_invoice/{id}',[Controllers\InvoicesController::class,'Print_invoice']);
 Route::get('export_invoices',[Controllers\InvoicesController::class,'export']);
 
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles',Controllers\RoleController::class);
+    Route::resource('users',Controllers\UserController::class);
+    });
 
 //route used by form to open main sidebar 1
 Route::get('/{page}', [Controllers\AdminController::class,'index']);
