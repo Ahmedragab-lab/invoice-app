@@ -17,7 +17,7 @@
                 <p class="mg-b-0">مشروع الفواتير 2021</p>
             </div>
         </div>
-        <div class="main-dashboard-header-right">
+        {{-- <div class="main-dashboard-header-right">
             <div>
                 <label class="tx-13">Customer Ratings</label>
                 <div class="main-star">
@@ -34,7 +34,7 @@
                 <label class="tx-13">Offline Sales</label>
                 <h5>783,675</h5>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!-- /breadcrumb -->
 @endsection

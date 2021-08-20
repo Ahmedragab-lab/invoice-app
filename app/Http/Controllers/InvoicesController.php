@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\InvoicesExport;
+use App\Notifications\Add_invoice_new;
 use Maatwebsite\Excel\Facades\Excel;
 class InvoicesController extends Controller
 {
@@ -85,12 +86,12 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
-           $user = User::first();
-           Notification::send($user, new AddInvoice($invoice_id));
+        //    $user = User::first();
+        //    Notification::send($user, new AddInvoice($invoice_id));
 
-        //    $user = User::get();
-        //    $invoices = invoices::latest()->first();
-        //    Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+           $user = User::get();
+           $invoices = invoices::latest()->first();
+           Notification::send($user, new Add_invoice_new($invoices));
 
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
