@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
 @section('title')
-    تقرير الفواتير - مورا سوفت للادارة الفواتير
+    تقرير الفواتير -
 @stop
 @endsection
 @section('page-header')
@@ -60,29 +60,30 @@
 
 
                     <div class="col-lg-3">
-                        <label class="rdiobox">
-                            <input checked name="rdio" type="radio" value="1" id="type_div"> <span>بحث بنوع
-                                الفاتورة</span></label>
+                        <label class="radiobox">
+                            <input checked name="radio" type="radio" value="1" id="type_div"> <span>بحث بنوع الفاتورة</span>
+                        </label>
                     </div>
 
 
                     <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                        <label class="rdiobox"><input name="rdio" value="2" type="radio"><span>بحث برقم الفاتورة
-                            </span></label>
+                        <label class="radiobox">
+                            <input name="radio" value="2" type="radio"><span>بحث برقم الفاتورة </span>
+                        </label>
                     </div><br><br>
 
                     <div class="row">
 
                         <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="type">
-                            <p class="mg-b-10">تحديد نوع الفواتير</p><select class="form-control select2" name="type"
-                                required>
+                            <p class="mg-b-10">تحديد نوع الفواتير</p>
+                            <select class="form-control select2" name="type" required>
                                 <option value="{{ $type ?? 'حدد نوع الفواتير' }}" selected>
                                     {{ $type ?? 'حدد نوع الفواتير' }}
                                 </option>
 
-                                <option value="مدفوعة">الفواتير المدفوعة</option>
-                                <option value="غير مدفوعة">الفواتير الغير مدفوعة</option>
-                                <option value="مدفوعة جزئيا">الفواتير المدفوعة جزئيا</option>
+                                <option value="مدفوعة" > الفواتير المدفوعة </option>
+                                <option value="غير مدفوعة" >الفواتير الغير مدفوعة</option>
+                                <option value="مدفوعة جزئيا" >الفواتير المدفوعة جزئيا</option>
 
                             </select>
                         </div><!-- col-4 -->

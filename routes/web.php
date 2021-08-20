@@ -48,5 +48,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users',Controllers\UserController::class);
     });
 
+
+Route::get('invoices_report',[Controllers\Invoices_Report::class,'index']);
+Route::post('Search_invoices',[Controllers\Invoices_Report::class,'Search_invoices']);
+Route::get('customers_report',[Controllers\Customers_Report::class,'index'])->name("customers_report");
+Route::post('Search_customers',[Controllers\Customers_Report::class,'Search_customers']);
+
+// Route::get('MarkAsRead_all','InvoicesController@MarkAsRead_all')->name('MarkAsRead_all');
+// Route::get('unreadNotifications_count', 'InvoicesController@unreadNotifications_count')->name('unreadNotifications_count');
+// Route::get('unreadNotifications', 'InvoicesController@unreadNotifications')->name('unreadNotifications');
+
+
+
 //route used by form to open main sidebar 1
 Route::get('/{page}', [Controllers\AdminController::class,'index']);
