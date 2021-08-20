@@ -87,7 +87,8 @@
                                     <div class="input-group-text">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
-                                </div><input class="form-control fc-datepicker" value="{{ $start_at ?? '' }}"
+                                </div>
+                                <input class="form-control fc-datepicker" value="{{ $start_at ?? '' }}"
                                     name="start_at" placeholder="YYYY-MM-DD" type="text">
                             </div><!-- input-group -->
                         </div>
@@ -99,7 +100,8 @@
                                     <div class="input-group-text">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
-                                </div><input class="form-control fc-datepicker" name="end_at"
+                                </div>
+                                <input class="form-control fc-datepicker" name="end_at"
                                     value="{{ $end_at ?? '' }}" placeholder="YYYY-MM-DD" type="text">
                             </div><!-- input-group -->
                         </div>
